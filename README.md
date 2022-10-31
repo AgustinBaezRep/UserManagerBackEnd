@@ -1,6 +1,6 @@
 # Creacion de tablas
 
-#[dbo.Actividad]
+# [dbo.Actividad]
 USE [UserManager]
 GO
 
@@ -23,7 +23,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-#[dbo.Pais]
+# [dbo.Pais]
 USE [UserManager]
 GO
 
@@ -45,7 +45,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-#[dbo.Usuario]
+# [dbo.Usuario]
 USE [UserManager]
 GO
 
