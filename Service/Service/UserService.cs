@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO;
 using Model.ViewModel;
@@ -59,6 +59,7 @@ namespace Service.Service
                 {
                     response.Add(new UserDTO()
                     {
+                        Id = u.Id,
                         Nombre = u.Nombre,
                         Apellido = u.Apellido,
                         CorreoElectronico = u.CorreoElectronico,

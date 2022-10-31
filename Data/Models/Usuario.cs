@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Model.DTO
+namespace Data.Models
 {
-    public class UserDTO
+    public partial class Usuario
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -12,6 +11,9 @@ namespace Model.DTO
         public string CorreoElectronico { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public int? Telefono { get; set; }
-        public string PaisResidencia { get; set; }
+        public int IdPaisResidencia { get; set; }
+        public bool RecibirInformacion { get; set; }
+
+        public virtual Pais IdPaisResidenciaNavigation { get; set; }
     }
 }

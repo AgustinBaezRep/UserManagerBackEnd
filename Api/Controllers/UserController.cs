@@ -103,8 +103,8 @@ namespace Api.Controllers
             return Ok("Usuario modificado de manera exitosa");
         }
 
-        [HttpDelete("DeleteUser")]
-        public async Task<ActionResult<bool>> DeleteUser([FromQuery] int id)
+        [HttpDelete("DeleteUser/{id}")]
+        public async Task<ActionResult<bool>> DeleteUser(int id)
         {
             try
             {

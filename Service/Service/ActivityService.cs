@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO;
 using Service.IService;
@@ -27,7 +27,7 @@ namespace Service.Service
                 {
                     FechaCreacion = DateTime.Now.Date,
                     IdUsuario = id,
-                    ActividadEfectuada = activity
+                    Actividad1 = activity
                 });
                 await context.SaveChangesAsync();
             }
@@ -48,8 +48,8 @@ namespace Service.Service
                     response.Add(new ActivityDTO()
                     {
                         FechaActividad = a.FechaCreacion,
-                        NombreUsuario = context.Usuario.First(u => u.IdUsuario == a.IdUsuario),
-                        DetalleActividad = a.ActividadEfectuada
+                        NombreUsuario = context.Usuario.FirstOrDefault(u => u.Id == a.IdUsuario)?.Nombre ?? "Usuario removido",
+                        DetalleActividad = a.Actividad1
                     });
                 });
             }
