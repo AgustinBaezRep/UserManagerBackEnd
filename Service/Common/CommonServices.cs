@@ -13,7 +13,7 @@ namespace Service.Common
 			try
 			{
                 int? paisResidencia = context.Pais.FirstOrDefault(p => p.Id == id)?.Id;
-                if (paisResidencia == null) 
+                if (paisResidencia == null)
                     throw new Exception($"ID de pais {id} no existente");
 
                 return paisResidencia.Value;

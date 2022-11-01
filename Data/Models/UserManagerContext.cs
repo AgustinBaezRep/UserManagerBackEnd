@@ -19,15 +19,6 @@ namespace Data.Models
         public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Server=.;Database=UserManager;Trusted_Connection=True");
-//            }
-//        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Actividad>(entity =>
@@ -41,9 +32,13 @@ namespace Data.Models
 
                 entity.Property(e => e.FechaCreacion)
                     .HasColumnName("fecha_creacion")
-                    .HasColumnType("date");
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
+
+                entity.Property(e => e.NombreUsuario)
+                    .HasColumnName("nombre_usuario")
+                    .HasMaxLength(250);
             });
 
             modelBuilder.Entity<Pais>(entity =>

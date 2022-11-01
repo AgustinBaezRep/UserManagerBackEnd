@@ -33,12 +33,14 @@ namespace Service.Service
 
                 userDTO = new UserDTO()
                 {
+                    Id = u.Id,
                     Nombre = u.Nombre,
                     Apellido = u.Apellido,
                     CorreoElectronico = u.CorreoElectronico,
                     FechaNacimiento = u.FechaNacimiento,
                     Telefono = u.Telefono,
-                    PaisResidencia = context.Pais.First(p => p.Id == u.IdPaisResidencia).Descripcion
+                    PaisResidencia = context.Pais.First(p => p.Id == u.IdPaisResidencia).Descripcion,
+                    RecibirInformacion = u.RecibirInformacion
                 };
             }
             catch (Exception)
@@ -65,7 +67,8 @@ namespace Service.Service
                         CorreoElectronico = u.CorreoElectronico,
                         FechaNacimiento = u.FechaNacimiento,
                         Telefono = u.Telefono,
-                        PaisResidencia = context.Pais.First(p => p.Id == u.IdPaisResidencia).Descripcion
+                        PaisResidencia = context.Pais.First(p => p.Id == u.IdPaisResidencia).Descripcion,
+                        RecibirInformacion = u.RecibirInformacion
                     });
                 });
             }
@@ -146,6 +149,29 @@ namespace Service.Service
             {
                 return false;
             }
+        }
+
+        public async Task<List<CountriesDTO>> GetCountries()
+        {
+            List<CountriesDTO> response = new List<CountriesDTO>();
+            try
+            {
+                var countries = await context.Pais.ToListAsync();
+                countries?.ForEach(u =>
+                {
+                    response.Add(new CountriesDTO()
+                    {
+                        Id = u.Id,
+                        Descripcion = u.Descripcion
+                    });
+                });
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener el listado de paises");
+            }
+
+            return response;
         }
     }
 }

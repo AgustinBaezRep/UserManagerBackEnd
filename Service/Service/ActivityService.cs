@@ -25,9 +25,10 @@ namespace Service.Service
             {
                 await context.Actividad.AddAsync(new Actividad()
                 {
-                    FechaCreacion = DateTime.Now.Date,
+                    FechaCreacion = DateTime.Now,
                     IdUsuario = id,
-                    Actividad1 = activity
+                    Actividad1 = activity,
+                    NombreUsuario = context.Usuario.FirstOrDefault(u => u.Id == id)?.Nombre ?? context.Actividad.Where(a => a.IdUsuario == id).ToList().Last().NombreUsuario
                 });
                 await context.SaveChangesAsync();
             }
@@ -48,8 +49,8 @@ namespace Service.Service
                     response.Add(new ActivityDTO()
                     {
                         FechaActividad = a.FechaCreacion,
-                        NombreUsuario = context.Usuario.FirstOrDefault(u => u.Id == a.IdUsuario)?.Nombre ?? "Usuario removido",
-                        DetalleActividad = a.Actividad1
+                        NombreUsuario = a.NombreUsuario,
+                        DetalleActividad = a.Actividad1,
                     });
                 });
             }
@@ -58,7 +59,7 @@ namespace Service.Service
                 throw new Exception("Error al obtener el listado de actividades");
             }
 
-            return response;
+            return response.OrderByDescending(x => x.FechaActividad).ToList();
         }
 
     }

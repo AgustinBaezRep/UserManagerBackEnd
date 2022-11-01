@@ -29,7 +29,7 @@ namespace Api.Controllers
             {
                 response.AddRange(await _service.GetUsers());
 
-                if (response == null)
+                if (response.Count == 0)
                 {
                     return NotFound();
                 }
@@ -40,10 +40,10 @@ namespace Api.Controllers
             }
 
             return Ok(response);
-        }   
+        }
 
-        [HttpGet("GetUserById")]
-        public async Task<ActionResult<UserDTO>> GetUserById([FromQuery]int id)
+        [HttpGet("GetUserById/{id}")]
+        public async Task<ActionResult<UserDTO>> GetUserById(int id)
         {
             var response = new UserDTO();
             try
@@ -121,6 +121,27 @@ namespace Api.Controllers
             }
 
             return Ok("Usuario eliminado de manera exitosa");
+        }
+
+        [HttpGet("GetCountries")]
+        public async Task<ActionResult<List<CountriesDTO>>> GetCountries()
+        {
+            var response = new List<CountriesDTO>();
+            try
+            {
+                response.AddRange(await _service.GetCountries());
+
+                if (response.Count == 0)
+                {
+                    return NotFound();
+                }
+            }
+            catch (System.Exception e)
+            {
+                throw new System.Exception(e.Message);
+            }
+
+            return Ok(response);
         }
     }
 }
