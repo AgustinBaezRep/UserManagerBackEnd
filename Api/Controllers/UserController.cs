@@ -72,7 +72,7 @@ namespace Api.Controllers
 
                 if (response == false)
                 {
-                    return BadRequest("Ocurrio un error al agregar el usuario");
+                    return BadRequest(false);
                 }
             }
             catch (System.Exception e)
@@ -80,7 +80,7 @@ namespace Api.Controllers
                 throw new System.Exception(e.Message);
             }
 
-            return Ok("Usuario agregado de manera exitosa");
+            return Ok(true);
         }
 
         [HttpPut("UpdateUser")]
@@ -92,7 +92,7 @@ namespace Api.Controllers
 
                 if (response == false)
                 {
-                    return BadRequest("Ocurrio un error al modificar el usuario");
+                    return BadRequest(false);
                 }
             }
             catch (System.Exception e)
@@ -100,7 +100,7 @@ namespace Api.Controllers
                 throw new System.Exception(e.Message);
             }
 
-            return Ok("Usuario modificado de manera exitosa");
+            return Ok(true);
         }
 
         [HttpDelete("DeleteUser/{id}")]
@@ -112,7 +112,7 @@ namespace Api.Controllers
 
                 if (response == false)
                 {
-                    return BadRequest("Error al eliminar el usuario");
+                    return BadRequest(false);
                 }
             }
             catch (System.Exception e)
@@ -120,7 +120,7 @@ namespace Api.Controllers
                 throw new System.Exception(e.Message);
             }
 
-            return Ok("Usuario eliminado de manera exitosa");
+            return Ok(true);
         }
 
         [HttpGet("GetCountries")]

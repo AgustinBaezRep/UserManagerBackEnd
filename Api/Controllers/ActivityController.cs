@@ -28,7 +28,7 @@ namespace Api.Controllers
             {
                 response.AddRange(await _service.GetActivities());
 
-                if (response == null)
+                if (response.Count == 0)
                 {
                     return NotFound();
                 }

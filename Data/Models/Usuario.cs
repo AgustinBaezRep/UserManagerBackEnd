@@ -10,7 +10,7 @@ namespace Data.Models
         public string Apellido { get; set; }
         public string CorreoElectronico { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public long Telefono { get; set; }
+        public long? Telefono { get; set; }
         public int IdPaisResidencia { get; set; }
         public bool RecibirInformacion { get; set; }
 

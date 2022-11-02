@@ -123,7 +123,7 @@ namespace Service.Service
                 u.RecibirInformacion = user.RecibirInformacion;
 
                 await context.SaveChangesAsync();
-                await activityService.UserActivityRecord(u.Id, "Modificacion de usuario");
+                await activityService.UserActivityRecord(u.Id, "Actualizacion de usuario");
                 return true;
             }
             catch (Exception)
